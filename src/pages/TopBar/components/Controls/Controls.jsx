@@ -10,7 +10,7 @@ function Controls() {
         <div className="controls">
             <IconButton>
                 <LoopIcon />
-            </IconButton >
+            </IconButton>
             <div className="controls-switch controls-switch__degrees">
                 <Button variant="outlined">C</Button>
                 <Button variant="outlined">F</Button>
