@@ -1,5 +1,7 @@
 import App from "./App";
+import TopBar from "./TopBar";
 
 export {
-    App
+    App,
+    TopBar
 };
