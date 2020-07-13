@@ -1,7 +1,12 @@
 const WEATHER_API_KEY = '5b6d2e987d1c4652b0dbb588fabaaed8';
 const GEO_TOKEN = 'cc884ea6b88e8a';
 
+const ADD_WEATHER_DATA = 'ADD_WEATHER_DATA';
+const ADD_GEO_DATA = 'ADD_GEO_DATA';
+
 export {
     WEATHER_API_KEY,
-    GEO_TOKEN
+    GEO_TOKEN,
+    ADD_WEATHER_DATA,
+    ADD_GEO_DATA
 }

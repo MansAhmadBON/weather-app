@@ -1,20 +1,25 @@
 import React, {useState, useEffect} from "react";
+import {connect} from 'react-redux';
+
 import TextField  from '@material-ui/core/TextField';
 import IconButton from '@material-ui/core/IconButton';
 import LocationSearchingIcon from '@material-ui/icons/LocationSearching';
 
 import {WEATHER_API_KEY, GEO_TOKEN} from '../../../../constants';
+import { ACweatherData, ACgeoData } from '../../../../redux/actions';
 
 import './SearchForm.scss';
 
-function SearchForm() {
+function SearchForm({addGeoData, addWeatherData}) {
     const [inpVal, setInpVal] = useState('');
-    const [weatherData, setWeatherData] = useState({});
 
     const getWeatherData = geoPosition => {
-        fetch(`https://api.weatherbit.io/v2.0/forecast/daily?city=${geoPosition}&days=3&units=S&lang=be&key=${WEATHER_API_KEY}`)
+        fetch(`https://api.weatherbit.io/v2.0/forecast/daily?city=${geoPosition}&days=3&lang=en&key=${WEATHER_API_KEY}`)
             .then(res => res.json())
-            .then(data => setWeatherData(data))
+            .then(({data, city_name, lat, lon}) => {
+                addWeatherData(data);
+                addGeoData({city: city_name, lat, lon});
+            })
             .catch(err => console.log(err));
     };
 
@@ -40,9 +45,6 @@ function SearchForm() {
         handleClick();
     };
 
-    useEffect(() => {
-        console.log(weatherData)
-    }, [weatherData]);
 
     return (
         <form className="search-form" onSubmit={handleSubmit}>
@@ -60,5 +62,14 @@ function SearchForm() {
         </form>
     )
 }
+const mapDispatchToProps = dispatch => {
+    return {
+        addGeoData: geoData => dispatch(ACgeoData(geoData)),
+        addWeatherData: weatherData => dispatch(ACweatherData(weatherData)),
+    }
+};
 
-export default SearchForm;
+export default connect(
+    null,
+    mapDispatchToProps
+)(SearchForm);
