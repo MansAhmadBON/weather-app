@@ -1,13 +1,12 @@
 import React from "react";
-import {Controls, SearchForm} from './components';
+import {SearchForm} from './components';
+
+import './TopBar.scss';
 
 function TopBar() {
     return (
-        <header>
-            <div className="container-content header-content">
-                <Controls />
-                <SearchForm/>
-            </div>
+        <header className="header-app">
+            <SearchForm/>
         </header>
     )
 }

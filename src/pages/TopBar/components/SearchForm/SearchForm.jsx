@@ -14,7 +14,7 @@ function SearchForm({addGeoData, addWeatherData}) {
     const [inpVal, setInpVal] = useState('');
 
     const getWeatherData = geoPosition => {
-        fetch(`https://api.weatherbit.io/v2.0/forecast/daily?city=${geoPosition}&days=3&lang=en&key=${WEATHER_API_KEY}`)
+        fetch(`https://api.weatherbit.io/v2.0/forecast/daily?city=${geoPosition}&days=5&lang=en&key=${WEATHER_API_KEY}`)
             .then(res => res.json())
             .then(({data, city_name, lat, lon}) => {
                 addWeatherData(data);
